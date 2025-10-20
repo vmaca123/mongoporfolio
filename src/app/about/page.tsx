@@ -1,4 +1,4 @@
-import { FaEnvelope, FaGithub, FaLinkedin, FaGraduationCap, FaCalendar, FaBook } from 'react-icons/fa'
+import { FaEnvelope, FaGithub, FaGraduationCap, FaCalendar, FaBook } from 'react-icons/fa'
 
 export default function AboutPage() {
   // 본인의 정보로 수정하세요

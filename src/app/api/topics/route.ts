@@ -7,10 +7,11 @@ export async function GET() {
     await connectMongoDB();
     const topics = await Topic.find().maxTimeMS(5000);
     return NextResponse.json(topics, { status: 200 });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error in GET /api/topics:", error);
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
     return NextResponse.json(
-      { error: "Failed to load topics", details: error?.message || "Unknown error" },
+      { error: "Failed to load topics", details: errorMessage },
       { status: 500 }
     );
   }
@@ -22,7 +23,7 @@ export async function POST(request: NextRequest) {
     await connectMongoDB();
     await Topic.create({ title, description });
     return NextResponse.json({ message: "Topic created" }, { status: 201 });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error in POST /api/topics:", error);
     return NextResponse.json(
       { error: "Failed to create topic" },
